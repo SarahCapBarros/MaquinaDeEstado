@@ -8,7 +8,7 @@ public class PerseguirAI : AState
     {
         jogador = player;
         next = EState.Perseguir;
-        distanciaMinima = 15.0f;
+        distanciaMinima = 6.0f;
     }
 
     public override EState OnUpdate(bool perto)

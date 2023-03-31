@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class PlayerAI : MonoBehaviour
 {
-    public Camera cam;
+
     public float speed;
-    public float cameraDistance;
-    public float cameraHeight;
     public bool inv { get; private set; }
 
     private CharacterController controller;
@@ -31,8 +29,6 @@ public class PlayerAI : MonoBehaviour
         moveDirection = transform.TransformDirection(movement) * speed;
 
         controller.Move(moveDirection * Time.deltaTime);
-        cam.transform.position = transform.position - transform.forward * cameraDistance + Vector3.up * cameraHeight;
-        cam.transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
 
         if (Input.GetKeyDown(KeyCode.X))
         {

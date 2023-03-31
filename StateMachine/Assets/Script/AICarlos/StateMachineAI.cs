@@ -39,6 +39,7 @@ public class StateMachineAI : MonoBehaviour
     private void ChangeState(EState nextState)
     {
         state[(int)nextState].OnBegin(player);
+        Debug.Log(currentState);
         currentState = nextState;
         Debug.Log(state[(int)currentState].next);
     }

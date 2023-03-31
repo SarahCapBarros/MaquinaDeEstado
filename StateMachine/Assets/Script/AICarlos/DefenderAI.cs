@@ -8,7 +8,7 @@ public class DefenderAI : AState
     {
         jogador = player;
         next = EState.Defender;
-        distanciaMinima = 15.0f;
+        distanciaMinima = 6.0f;
     }
 
     public override EState OnUpdate(bool perto)
