@@ -7,42 +7,46 @@ public class NPCController : MonoBehaviour
     public LayerMask obstacleLayer;
     public float detectionRadius = 1f;
     private Vector3 targetPosition;
-
+    public Rigidbody rb;
+    public StateManager stateM;
     private void Start()
     {
-        // Define a posição inicial do NPC para uma posição aleatória no plano X-Z
-        targetPosition = new Vector3(Random.Range(-10f, 10f), transform.position.y, Random.Range(-10f, 10f));
+        // Define a posiï¿½ï¿½o inicial do NPC para uma posiï¿½ï¿½o aleatï¿½ria no plano X-Z
+        targetPosition = new Vector3(Random.Range(-50f, 50f), transform.position.y, Random.Range(-50f, 50f));
     }
 
     private void Update()
     {
-        // Calcula a direção para a posição alvo
+        stateM.RunCurrentState();
+        // Calcula a direï¿½ï¿½o para a posiï¿½ï¿½o alvo
         Vector3 direction = (targetPosition - transform.position).normalized;
         direction.y = 0f; // Define a componente Y como 0 para prevenir movimento no eixo Y
 
-        // Detecta obstáculos na frente do NPC
+        // Detecta obstï¿½culos na frente do NPC
         Collider[] obstacles = Physics.OverlapSphere(transform.position, detectionRadius, obstacleLayer);
         if (obstacles.Length > 0)
         {
-            // Se houver obstáculos na frente, escolhe uma nova posição alvo aleatória
-            targetPosition = new Vector3(Random.Range(-10f, 10f), transform.position.y, Random.Range(-10f, 10f));
+            // Se houver obstï¿½culos na frente, escolhe uma nova posiï¿½ï¿½o alvo aleatï¿½ria
+            targetPosition = new Vector3(Random.Range(-50f, 50f), transform.position.y, Random.Range(-50f, 50f));
+            //rb.MovePosition(targetPosition * Time.deltaTime);
+            transform.Translate(targetPosition * moveSpeed * Time.deltaTime, Space.World);
         }
         else
         {
-            // Move o NPC no eixo X-Z em direção à posição alvo
+            // Move o NPC no eixo X-Z em direï¿½ï¿½o ï¿½ posiï¿½ï¿½o alvo
             transform.position += new Vector3(direction.x * moveSpeed * Time.deltaTime, 0f, direction.z * moveSpeed * Time.deltaTime);
 
-            // Se o NPC estiver próximo o suficiente da posição alvo, escolhe uma nova posição alvo aleatória
+            // Se o NPC estiver prï¿½ximo o suficiente da posiï¿½ï¿½o alvo, escolhe uma nova posiï¿½ï¿½o alvo aleatï¿½ria
             if (Vector3.Distance(transform.position, targetPosition) < maxDistanceToTarget)
             {
-                targetPosition = new Vector3(Random.Range(-10f, 10f), transform.position.y, Random.Range(-10f, 10f));
+                targetPosition = new Vector3(Random.Range(-50f, 50f), transform.position.y, Random.Range(-50f, 50f));
             }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Desenha uma esfera representando a área de detecção de obstáculos
+        // Desenha uma esfera representando a ï¿½rea de detecï¿½ï¿½o de obstï¿½culos
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }

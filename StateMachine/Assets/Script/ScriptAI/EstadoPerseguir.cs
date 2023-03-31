@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EstadoPerseguir : State
+/*public class EstadoPerseguir : State
 {
     public EstadoPatrulhar estadoPatrulhar;
     public bool perto;
@@ -26,4 +26,4 @@ public class EstadoPerseguir : State
         }
     }
 
-}
+}*/

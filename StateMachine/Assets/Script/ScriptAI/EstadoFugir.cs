@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EstadoFugir : State
+/*public class EstadoFugir : State
 {
     public EstadoPatrulhar estadoPatrulhar;
     public bool perto, playerInvencivel;
@@ -19,4 +19,4 @@ public class EstadoFugir : State
     }
 
     
-}
+}*/
